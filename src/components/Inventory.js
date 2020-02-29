@@ -8,6 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import {HashLoader} from 'react-spinners';
 import Add from '@material-ui/icons/Add';
 
+/*
+ * This component is in charge of the inventory view functionality.
+ */
 class Inventory extends Component {
     constructor(props) {
         super(props);
@@ -19,14 +22,23 @@ class Inventory extends Component {
         };
     }
 
+    /*
+     * Handle the pressed car data.
+     */
     showCarDetails = async (car) => {
         this.setState({carPressed: true, car: car});
     };
 
+    /*
+     * Handle the car details modal visibility.
+     */
     hideCarDetailsModal = () => {
         this.setState({carPressed: false});
     };
 
+    /*
+     * Render relevant car from the car list.
+     */
     showCar = (car, index) => {
         const carImg = require(`../img/${car.type.toLowerCase()}.png`);
         return (
@@ -43,18 +55,30 @@ class Inventory extends Component {
         );
     };
 
+    /*
+     * Handle the insert car modal visibility.
+     */
     showInsertCarModal = () => {
         this.setState({addPressed: true});
     };
 
+    /*
+     * Handle the insert car modal visibility.
+     */
     hideInsertCarModal = () => {
         this.setState({addPressed: false});
     };
 
+    /*
+     * Handle the boolean which determines if any request is done.
+     */
     fetchData = () => {
         this.setState({isDoneFetching: true});
     };
 
+    /*
+     * Get all cars in case of any request is done.
+     */
     async componentDidUpdate(prevProps, prevState) {
         if (this.state.isDoneFetching !== prevState.isDoneFetching)
         {
@@ -63,6 +87,9 @@ class Inventory extends Component {
         }
     }
 
+    /*
+     * Retrieve the cars data after the component first render (initialize).
+     */
     async componentDidMount() {
         const cars = await axios.get('http://localhost/get_cars');
         this.setState({allCars: cars.data});

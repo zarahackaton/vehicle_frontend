@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import EditCar from './EditCar';
 import Button from '@material-ui/core/Button';
 import Rodal from 'rodal';
 import {toast} from "react-toastify";
 
-import EditCar from './EditCar';
-
+/*
+ * This component is in charge of the view car functionality.
+ */
 class ViewCar extends Component {
     constructor(props) {
         super(props);
@@ -16,10 +18,16 @@ class ViewCar extends Component {
         };
     }
 
+    /*
+     * Inform Inventory component about closing the modal.
+     */
     hide = () => {
         this.props.visible();
     };
 
+    /*
+     * Handle BackEnd request to delete a specific car.
+     */
     deleteCar = async () => {
         try {
             const result = await axios.delete(`http://localhost/delete_car/${this.props.car._id}`);
@@ -32,6 +40,9 @@ class ViewCar extends Component {
         this.hide();
     };
 
+    /*
+     * Handle the boolean that determines edit car modal rendering.
+     */
     showEditCar = () => {
         this.setState({editVisible: true});
     };
