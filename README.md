@@ -4,4 +4,4 @@ You can build an image with the command below:
 * docker build -t <<name:tag>> .
 
 Then , running the container with the command below:
-* docker run -d -p <<available_host_port>>:3000 <<name:tag>>
+* docker run -d -p <available_host_port>:3000 <<name:tag>>
