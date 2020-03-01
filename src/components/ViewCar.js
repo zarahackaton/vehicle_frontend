@@ -25,6 +25,12 @@ class ViewCar extends Component {
         this.props.visible();
     };
 
+    deleteCarAlert = async () => {
+        if (window.confirm('Are you sure you want to delete this car?')) {
+            await this.deleteCar();
+        }
+    };
+
     /*
      * Handle BackEnd request to delete a specific car.
      */
@@ -74,7 +80,7 @@ class ViewCar extends Component {
                                     size="large"
                                     variant="contained"
                                     className="capitalizeText"
-                                    onClick={this.deleteCar}
+                                    onClick={this.deleteCarAlert}
                             >
                                 Delete
                             </Button>
